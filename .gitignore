@@ -50,6 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+procesador/
 
 # ignore Quartus II generated files
 *_generation_script*
