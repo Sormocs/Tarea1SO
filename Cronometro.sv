@@ -27,7 +27,6 @@ module Cronometro(
 		.switch_mode_0_external_connection_export(switch_mode0),
 		.switch_mode_1_external_connection_export(switch_mode1),
 		.switch_pause_0_external_connection_export(switch_pause),
-		.switch_reset_0_external_connection_export(switch_reset),
 		.start_button_0_external_connection_export(play_btn),
 		.pio_leds_0_external_connection_export(leds),
 		.pio_0_external_connection_export(disp2)

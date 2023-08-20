@@ -190,20 +190,20 @@ static void timer_isr(void *context)
 
 	ms++;
 	if (mode != 2) {
-		if (ms % 100 == 0) { // disp 0 de los milisegundos
+		if (ms % 10 == 0) { // disp 0 de los milisegundos
 			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_0_BASE);
 			unsigned next = display_nums(current);
 			IOWR_ALTERA_AVALON_PIO_DATA(DISP_0_BASE, next);
 		}
 
-		if (ms % 1000 == 0) { // disp 1 de los milisegundos
+		if (ms % 100 == 0) { // disp 1 de los milisegundos
 			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_1_BASE);
 			unsigned next = display_nums(current);
 			IOWR_ALTERA_AVALON_PIO_DATA(DISP_1_BASE, next);
 		}
 	}
 
-	if (ms == 9999) {
+	if (ms == 999) {
 		ms = 0;
 		sec++;
 		leds = leds << 1;
@@ -263,7 +263,8 @@ static void begin(){
 	} else {
 		mode = 3;
 	}
-
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(START_BUTTON_0_BASE, 0);
+	IORD_ALTERA_AVALON_PIO_EDGE_CAP(START_BUTTON_0_BASE);
 }
 
 int main()

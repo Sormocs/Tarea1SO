@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu_0' in SOPC Builder design 'procesador'
  * SOPC Builder design path: D:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
  *
- * Generated: Sat Aug 19 23:03:18 CST 2023
+ * Generated: Sun Aug 20 00:10:41 CST 2023
  */
 
 /*
@@ -535,33 +535,6 @@
 #define SWITCH_PAUSE_0_RESET_VALUE 0
 #define SWITCH_PAUSE_0_SPAN 16
 #define SWITCH_PAUSE_0_TYPE "altera_avalon_pio"
-
-
-/*
- * switch_reset_0 configuration
- *
- */
-
-#define ALT_MODULE_CLASS_switch_reset_0 altera_avalon_pio
-#define SWITCH_RESET_0_BASE 0x200000
-#define SWITCH_RESET_0_BIT_CLEARING_EDGE_REGISTER 0
-#define SWITCH_RESET_0_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define SWITCH_RESET_0_CAPTURE 0
-#define SWITCH_RESET_0_DATA_WIDTH 1
-#define SWITCH_RESET_0_DO_TEST_BENCH_WIRING 0
-#define SWITCH_RESET_0_DRIVEN_SIM_VALUE 0
-#define SWITCH_RESET_0_EDGE_TYPE "NONE"
-#define SWITCH_RESET_0_FREQ 50000000
-#define SWITCH_RESET_0_HAS_IN 1
-#define SWITCH_RESET_0_HAS_OUT 0
-#define SWITCH_RESET_0_HAS_TRI 0
-#define SWITCH_RESET_0_IRQ -1
-#define SWITCH_RESET_0_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define SWITCH_RESET_0_IRQ_TYPE "NONE"
-#define SWITCH_RESET_0_NAME "/dev/switch_reset_0"
-#define SWITCH_RESET_0_RESET_VALUE 0
-#define SWITCH_RESET_0_SPAN 16
-#define SWITCH_RESET_0_TYPE "altera_avalon_pio"
 
 
 /*
