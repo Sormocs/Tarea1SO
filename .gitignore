@@ -81,7 +81,8 @@ procesador/
 *example*
 *sopc_*
 
-
+PLLJ_PLLSPE_INFO.txt
+.qsys_edit/preferences.xml
 # ignore Quartus II generated folders
 */db/
 */incremental_db/
@@ -93,4 +94,3 @@ incremental_db/
 db/
 _output_files/
 PLLJ_PLLSPE_INFO.txt
-.qsys_edit/preferences.xml

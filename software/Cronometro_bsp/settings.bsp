@@ -2,12 +2,12 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Aug 19, 2023 10:11:35 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1692504695309</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Aug 19, 2023 10:39:40 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1692506380967</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\TEC\Semestre_II_2023\Operativos\Tarea_1\Tarea\Tarea1SO\software\Cronometro_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>D:\TEC\Semestre_II_2023\Operativos\Tarea_1\Tarea\Tarea1SO\procesador.sopcinfo</SopcDesignFile>
-        <SystemFileHash>21f6836a99d1651dc66c10afec126ccae6d20694c3d11635c1e2ba6f288</SystemFileHash>
+        <SystemFileHash>c47cf14e8b336ef762bf5d90d9ce5db58383fa84a83e36f4341428f358f3</SystemFileHash>
         <JdiFile>default</JdiFile>
         <Cpu>cpu_0</Cpu>
         <SchemaVersion>1.9</SchemaVersion>
