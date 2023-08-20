@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu_0' in SOPC Builder design 'procesador'
  * SOPC Builder design path: d:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
  *
- * Generated: Fri Aug 18 16:55:49 CST 2023
+ * Generated: Sat Aug 19 18:30:52 CST 2023
  */
 
 /*
@@ -167,7 +167,7 @@
 #define ALT_STDOUT_DEV null
 #define ALT_STDOUT_TYPE ""
 #define ALT_SYSTEM_NAME "procesador"
-#define ALT_SYS_CLK_TICKS_PER_SEC TIMER_0_TICKS_PER_SEC
+#define ALT_SYS_CLK_TICKS_PER_SEC NONE_TICKS_PER_SEC
 #define ALT_TIMESTAMP_CLK_TIMER_DEVICE_TYPE NONE_TIMER_DEVICE_TYPE
 
 
@@ -181,7 +181,7 @@
 #define DISP_0_BIT_CLEARING_EDGE_REGISTER 0
 #define DISP_0_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define DISP_0_CAPTURE 0
-#define DISP_0_DATA_WIDTH 8
+#define DISP_0_DATA_WIDTH 7
 #define DISP_0_DO_TEST_BENCH_WIRING 0
 #define DISP_0_DRIVEN_SIM_VALUE 0
 #define DISP_0_EDGE_TYPE "NONE"
@@ -208,7 +208,7 @@
 #define DISP_1_BIT_CLEARING_EDGE_REGISTER 0
 #define DISP_1_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define DISP_1_CAPTURE 0
-#define DISP_1_DATA_WIDTH 8
+#define DISP_1_DATA_WIDTH 7
 #define DISP_1_DO_TEST_BENCH_WIRING 0
 #define DISP_1_DRIVEN_SIM_VALUE 0
 #define DISP_1_EDGE_TYPE "NONE"
@@ -226,6 +226,33 @@
 
 
 /*
+ * disp_2 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_disp_2 altera_avalon_pio
+#define DISP_2_BASE 0x110000
+#define DISP_2_BIT_CLEARING_EDGE_REGISTER 0
+#define DISP_2_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define DISP_2_CAPTURE 0
+#define DISP_2_DATA_WIDTH 7
+#define DISP_2_DO_TEST_BENCH_WIRING 0
+#define DISP_2_DRIVEN_SIM_VALUE 0
+#define DISP_2_EDGE_TYPE "NONE"
+#define DISP_2_FREQ 50000000
+#define DISP_2_HAS_IN 0
+#define DISP_2_HAS_OUT 1
+#define DISP_2_HAS_TRI 0
+#define DISP_2_IRQ -1
+#define DISP_2_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define DISP_2_IRQ_TYPE "NONE"
+#define DISP_2_NAME "/dev/disp_2"
+#define DISP_2_RESET_VALUE 0
+#define DISP_2_SPAN 16
+#define DISP_2_TYPE "altera_avalon_pio"
+
+
+/*
  * disp_3 configuration
  *
  */
@@ -235,7 +262,7 @@
 #define DISP_3_BIT_CLEARING_EDGE_REGISTER 0
 #define DISP_3_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define DISP_3_CAPTURE 0
-#define DISP_3_DATA_WIDTH 8
+#define DISP_3_DATA_WIDTH 7
 #define DISP_3_DO_TEST_BENCH_WIRING 0
 #define DISP_3_DRIVEN_SIM_VALUE 0
 #define DISP_3_EDGE_TYPE "NONE"
@@ -262,7 +289,7 @@
 #define DISP_4_BIT_CLEARING_EDGE_REGISTER 0
 #define DISP_4_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define DISP_4_CAPTURE 0
-#define DISP_4_DATA_WIDTH 8
+#define DISP_4_DATA_WIDTH 7
 #define DISP_4_DO_TEST_BENCH_WIRING 0
 #define DISP_4_DRIVEN_SIM_VALUE 0
 #define DISP_4_EDGE_TYPE "NONE"
@@ -289,7 +316,7 @@
 #define DISP_5_BIT_CLEARING_EDGE_REGISTER 0
 #define DISP_5_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define DISP_5_CAPTURE 0
-#define DISP_5_DATA_WIDTH 8
+#define DISP_5_DATA_WIDTH 7
 #define DISP_5_DO_TEST_BENCH_WIRING 0
 #define DISP_5_DRIVEN_SIM_VALUE 0
 #define DISP_5_EDGE_TYPE "NONE"
@@ -312,8 +339,8 @@
  */
 
 #define ALT_INCLUDE_INSTRUCTION_RELATED_EXCEPTION_API
-#define ALT_MAX_FD 32
-#define ALT_SYS_CLK TIMER_0
+#define ALT_MAX_FD 4
+#define ALT_SYS_CLK none
 #define ALT_TIMESTAMP_CLK none
 
 

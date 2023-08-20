@@ -6,7 +6,7 @@
    version="1.0"
    description=""
    tags=""
-   categories="" />
+   categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
    element clk_0
@@ -48,6 +48,14 @@
       datum _sortIndex
       {
          value = "6";
+         type = "int";
+      }
+   }
+   element disp_2
+   {
+      datum _sortIndex
+      {
+         value = "14";
          type = "int";
       }
    }
@@ -145,7 +153,7 @@
  <parameter name="hideFromIPCatalog" value="false" />
  <parameter name="lockedInterfaceDefinition" value="" />
  <parameter name="maxAdditionalLatency" value="1" />
- <parameter name="projectName" value="" />
+ <parameter name="projectName" value="Cronometro.qpf" />
  <parameter name="sopcBorderPoints" value="false" />
  <parameter name="systemHash" value="0" />
  <parameter name="testBenchDutName" value="" />
@@ -176,6 +184,11 @@
  <interface
    name="disp_5_external_connection"
    internal="disp_5.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pio_0_external_connection"
+   internal="disp_2.external_connection"
    type="conduit"
    dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
@@ -225,7 +238,7 @@
   <parameter name="dataAddrWidth" value="22" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='ram_0.s1' start='0x20000' end='0x22000' type='altera_avalon_onchip_memory2.s1' /><slave name='timer_0.s1' start='0x30000' end='0x30020' type='altera_avalon_timer.s1' /><slave name='disp_0.s1' start='0x40000' end='0x40010' type='altera_avalon_pio.s1' /><slave name='disp_1.s1' start='0x50000' end='0x50010' type='altera_avalon_pio.s1' /><slave name='disp_3.s1' start='0x60000' end='0x60010' type='altera_avalon_pio.s1' /><slave name='disp_4.s1' start='0x70000' end='0x70010' type='altera_avalon_pio.s1' /><slave name='disp_5.s1' start='0x80000' end='0x80010' type='altera_avalon_pio.s1' /><slave name='switch_mode_0.s1' start='0x90000' end='0x90010' type='altera_avalon_pio.s1' /><slave name='switch_mode_1.s1' start='0x100000' end='0x100010' type='altera_avalon_pio.s1' /><slave name='switch_reset_0.s1' start='0x200000' end='0x200010' type='altera_avalon_pio.s1' /><slave name='switch_pause_0.s1' start='0x300000' end='0x300010' type='altera_avalon_pio.s1' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='ram_0.s1' start='0x20000' end='0x22000' type='altera_avalon_onchip_memory2.s1' /><slave name='timer_0.s1' start='0x30000' end='0x30020' type='altera_avalon_timer.s1' /><slave name='disp_0.s1' start='0x40000' end='0x40010' type='altera_avalon_pio.s1' /><slave name='disp_1.s1' start='0x50000' end='0x50010' type='altera_avalon_pio.s1' /><slave name='disp_3.s1' start='0x60000' end='0x60010' type='altera_avalon_pio.s1' /><slave name='disp_4.s1' start='0x70000' end='0x70010' type='altera_avalon_pio.s1' /><slave name='disp_5.s1' start='0x80000' end='0x80010' type='altera_avalon_pio.s1' /><slave name='switch_mode_0.s1' start='0x90000' end='0x90010' type='altera_avalon_pio.s1' /><slave name='switch_mode_1.s1' start='0x100000' end='0x100010' type='altera_avalon_pio.s1' /><slave name='disp_2.s1' start='0x110000' end='0x110010' type='altera_avalon_pio.s1' /><slave name='switch_reset_0.s1' start='0x200000' end='0x200010' type='altera_avalon_pio.s1' /><slave name='switch_pause_0.s1' start='0x300000' end='0x300010' type='altera_avalon_pio.s1' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -395,7 +408,7 @@
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
+  <parameter name="width" value="7" />
  </module>
  <module name="disp_1" kind="altera_avalon_pio" version="22.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
@@ -409,7 +422,21 @@
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
+  <parameter name="width" value="7" />
+ </module>
+ <module name="disp_2" kind="altera_avalon_pio" version="22.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="7" />
  </module>
  <module name="disp_3" kind="altera_avalon_pio" version="22.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
@@ -423,7 +450,7 @@
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
+  <parameter name="width" value="7" />
  </module>
  <module name="disp_4" kind="altera_avalon_pio" version="22.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
@@ -437,7 +464,7 @@
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
+  <parameter name="width" value="7" />
  </module>
  <module name="disp_5" kind="altera_avalon_pio" version="22.1" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
@@ -451,7 +478,7 @@
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
+  <parameter name="width" value="7" />
  </module>
  <module
    name="ram_0"
@@ -699,6 +726,15 @@
  <connection
    kind="avalon"
    version="22.1"
+   start="cpu_0.data_master"
+   end="disp_2.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00110000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="22.1"
    start="cpu_0.instruction_master"
    end="rom_0.s1">
   <parameter name="arbitrationPriority" value="1" />
@@ -724,6 +760,7 @@
    version="22.1"
    start="clk_0.clk"
    end="switch_pause_0.clk" />
+ <connection kind="clock" version="22.1" start="clk_0.clk" end="disp_2.clk" />
  <connection kind="clock" version="22.1" start="clk_0.clk" end="rom_0.clk1" />
  <connection kind="clock" version="22.1" start="clk_0.clk" end="ram_0.clk1" />
  <connection kind="interrupt" version="22.1" start="cpu_0.irq" end="timer_0.irq">
@@ -780,6 +817,11 @@
    version="22.1"
    start="clk_0.clk_reset"
    end="switch_pause_0.reset" />
+ <connection
+   kind="reset"
+   version="22.1"
+   start="clk_0.clk_reset"
+   end="disp_2.reset" />
  <connection
    kind="reset"
    version="22.1"

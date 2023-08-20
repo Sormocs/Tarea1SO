@@ -87,7 +87,7 @@ ACDS_VERSION := 22.1
 # Define path to the application ELF. 
 # It may be used by the makefile fragments so is defined before including them. 
 # 
-ELF := Cronometro_C.elf
+ELF := Cronometro.elf
 
 # Paths to C, C++, and assembly source files.
 C_SRCS := Cronometro.c
@@ -110,7 +110,7 @@ CREATE_LINKER_MAP := 1
 # Common arguments for ALT_CFLAGSs
 APP_CFLAGS_DEFINED_SYMBOLS :=
 APP_CFLAGS_UNDEFINED_SYMBOLS :=
-APP_CFLAGS_OPTIMIZATION := -O0
+APP_CFLAGS_OPTIMIZATION := -Os
 APP_CFLAGS_DEBUG_LEVEL := -g
 APP_CFLAGS_WARNINGS := -Wall
 APP_CFLAGS_USER_FLAGS :=
@@ -125,7 +125,7 @@ CRT0 :=
 SYS_LIB :=
 
 # Define path to the root of the BSP.
-BSP_ROOT_DIR := ../Cronometro_C_bsp/
+BSP_ROOT_DIR := ../Cronometro_bsp/
 
 # List of application specific include directories, library directories and library names
 APP_INCLUDE_DIRS :=
