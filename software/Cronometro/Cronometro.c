@@ -183,6 +183,7 @@ static unsigned display_seconds(unsigned curr_num){
 	      }
 }
 
+static unsigned leds = 0;
 static void timer_isr(void *context)
 {
 	(void)context;
@@ -205,6 +206,8 @@ static void timer_isr(void *context)
 	if (ms == 9999) {
 		ms = 0;
 		sec++;
+		leds = leds << 1;
+		IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDS_0_BASE, leds);
 	}
 
 	if (mode != 1) {
@@ -239,7 +242,6 @@ static void timer_isr(void *context)
 			IOWR_ALTERA_AVALON_PIO_DATA(DISP_5_BASE, next);
 		}
 	}
-
 	IOWR_ALTERA_AVALON_TIMER_STATUS(TIMER_0_BASE,0);
 }
 

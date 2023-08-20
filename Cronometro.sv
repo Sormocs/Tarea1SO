@@ -11,7 +11,8 @@ module Cronometro(
 							disp2,
 							disp3,
 							disp4,
-							disp5
+							disp5,
+	output logic[9:0] leds
 	);
 	
 	procesador proc
@@ -28,6 +29,7 @@ module Cronometro(
 		.switch_pause_0_external_connection_export(switch_pause),
 		.switch_reset_0_external_connection_export(switch_reset),
 		.start_button_0_external_connection_export(play_btn),
+		.pio_leds_0_external_connection_export(leds),
 		.pio_0_external_connection_export(disp2)
 	);
 	
