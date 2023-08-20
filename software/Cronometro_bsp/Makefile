@@ -101,7 +101,7 @@ ACDS_VERSION := 22.1
 # BUILD_NUMBER: 922
 
 SETTINGS_FILE := settings.bsp
-SOPC_FILE := d:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
+SOPC_FILE := D:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
 
 #-------------------------------------------------------------------------------
 #                             TOOL & COMMAND DEFINITIONS

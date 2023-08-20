@@ -2,7 +2,7 @@
   <sld_infos>
     <sld_info hpath="procesador:proc" name="proc">
       <assignment_values>
-        <assignment_value text="QSYS_NAME procesador HAS_SOPCINFO 1 GENERATION_ID 1692498691"/>
+        <assignment_value text="QSYS_NAME procesador HAS_SOPCINFO 1 GENERATION_ID 1692504962"/>
       </assignment_values>
     </sld_info>
   </sld_infos>

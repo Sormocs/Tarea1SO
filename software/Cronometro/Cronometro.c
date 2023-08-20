@@ -83,7 +83,6 @@
 #include "sys/alt_stdio.h"
 
 #include "sys/alt_irq.h"
-
 #include "altera_avalon_timer_regs.h"
 #include "altera_avalon_pio_regs.h"
 
@@ -100,6 +99,11 @@
 #define DISP_8 0x7F     // Represents 01111111 in binary
 #define DISP_9 0x73     // Represents 01110011 in binary
  // si los displays no sirven es porque hay 8 bits
+
+static int ms = 0;
+static int sec = 0;
+static int min = 0;
+static int mode = 0;
 
 static unsigned display_nums(unsigned curr_num){
 
@@ -179,62 +183,85 @@ static unsigned display_seconds(unsigned curr_num){
 	      }
 }
 
-static int ms = 0;
-static int sec = 0;
-static int min = 0;
-
 static void timer_isr(void *context)
 {
 	(void)context;
 
 	ms++;
-	if (ms%100 == 0){ // disp 0 de los milisegundos
-		unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_0_BASE);
-		unsigned next = display_nums(current);
-		IOWR_ALTERA_AVALON_PIO_DATA(DISP_0_BASE,next);
-	}
-
-	if (ms%1000 == 0){ // disp 0 de los milisegundos
-			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_1_BASE);
+	if (mode != 2) {
+		if (ms % 100 == 0) { // disp 0 de los milisegundos
+			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_0_BASE);
 			unsigned next = display_nums(current);
-			IOWR_ALTERA_AVALON_PIO_DATA(DISP_1_BASE,next);
+			IOWR_ALTERA_AVALON_PIO_DATA(DISP_0_BASE, next);
 		}
 
-	if (ms == 9999){
+		if (ms % 1000 == 0) { // disp 1 de los milisegundos
+			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_1_BASE);
+			unsigned next = display_nums(current);
+			IOWR_ALTERA_AVALON_PIO_DATA(DISP_1_BASE, next);
+		}
+	}
+
+	if (ms == 9999) {
 		ms = 0;
 		sec++;
 	}
 
-	if (sec != 0){
-		unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_2_BASE);
-		unsigned next = display_nums(current);
-		IOWR_ALTERA_AVALON_PIO_DATA(DISP_2_BASE,next);
-	}
-
-	if (sec != 0 && sec%10 == 0  ){
-		unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_3_BASE);
-		unsigned next = display_seconds(current);
-		IOWR_ALTERA_AVALON_PIO_DATA(DISP_3_BASE,next);
+	if (mode != 1) {
+		if (sec != 0) {
+			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_2_BASE);
+			unsigned next = display_nums(current);
+			IOWR_ALTERA_AVALON_PIO_DATA(DISP_2_BASE, next);
 		}
 
-	if (sec == 59){
+		if (sec != 0 && sec % 10 == 0) {
+			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_3_BASE);
+			unsigned next = display_seconds(current);
+			IOWR_ALTERA_AVALON_PIO_DATA(DISP_3_BASE, next);
+		}
+	}
+
+	if (sec == 59) {
 		sec = 0;
 		min++;
 	}
 
-	if (min != 0){
-		unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_4_BASE);
-		unsigned next = display_seconds(current);
-		IOWR_ALTERA_AVALON_PIO_DATA(DISP_4_BASE,next);
+	if (mode == 3) {
+		if (min != 0) {
+			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_4_BASE);
+			unsigned next = display_seconds(current);
+			IOWR_ALTERA_AVALON_PIO_DATA(DISP_4_BASE, next);
 		}
 
-	if (min != 0 && min%10 == 0 ){
-		unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_5_BASE);
-		unsigned next = display_seconds(current);
-		IOWR_ALTERA_AVALON_PIO_DATA(DISP_5_BASE,next);
+		if (min != 0 && min % 10 == 0) {
+			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_5_BASE);
+			unsigned next = display_seconds(current);
+			IOWR_ALTERA_AVALON_PIO_DATA(DISP_5_BASE, next);
 		}
+	}
 
 	IOWR_ALTERA_AVALON_TIMER_STATUS(TIMER_0_BASE,0);
+}
+
+static void begin(){
+
+	IOWR(DISP_0_BASE,0,DISP_0);
+	IOWR(DISP_1_BASE,0,DISP_0);
+	IOWR(DISP_2_BASE,0,DISP_0);
+	IOWR(DISP_3_BASE,0,DISP_0);
+	IOWR(DISP_4_BASE,0,DISP_0);
+	IOWR(DISP_5_BASE,0,DISP_0);
+
+	unsigned swi1 = IORD(SWITCH_MODE_0_BASE,0);
+	unsigned swi2 = IORD(SWITCH_MODE_1_BASE,0);
+	if (swi1 == 0 && swi2 == 0){
+		mode = 1;
+	} else if (swi1 == 0 && swi2 == 1){
+		mode = 2;
+	} else {
+		mode = 3;
+	}
+
 }
 
 int main()
@@ -246,11 +273,22 @@ int main()
 				NULL,
 				NULL
 		);
+
 	IOWR_ALTERA_AVALON_TIMER_CONTROL(
-				TIMER_0_BASE,
-				  ALTERA_AVALON_TIMER_CONTROL_ITO_MSK
-				| ALTERA_AVALON_TIMER_CONTROL_CONT_MSK);
+					TIMER_0_BASE,
+					  ALTERA_AVALON_TIMER_CONTROL_ITO_MSK
+					| ALTERA_AVALON_TIMER_CONTROL_CONT_MSK);
+
+	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(START_BUTTON_0_BASE, 0xf);
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(START_BUTTON_0_BASE, 0x0);
+
+	alt_ic_isr_register(
+			START_BUTTON_0_IRQ_INTERRUPT_CONTROLLER_ID,
+			START_BUTTON_0_IRQ,
+			begin,
+			NULL, NULL);
 
 	while (1);
 	return(0);
 }
+

@@ -2,12 +2,12 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Aug 19, 2023 6:30:50 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1692491450627</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Aug 19, 2023 10:11:35 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1692504695309</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\TEC\Semestre_II_2023\Operativos\Tarea_1\Tarea\Tarea1SO\software\Cronometro_bsp</BspGeneratedLocation>
-        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>D:\TEC\Semestre_II_2023\Operativos\Tarea_1\Tarea\Tarea1SO\procesador.sopcinfo</SopcDesignFile>
-        <SystemFileHash>f8e75d5ac18bae8f5f5a96221b3eaa55df223a2de95397e2f5f38ead49542e7</SystemFileHash>
+        <SystemFileHash>21f6836a99d1651dc66c10afec126ccae6d20694c3d11635c1e2ba6f288</SystemFileHash>
         <JdiFile>default</JdiFile>
         <Cpu>cpu_0</Cpu>
         <SchemaVersion>1.9</SchemaVersion>
@@ -938,6 +938,12 @@
         <MemoryMap>
                 <slaveDescriptor>disp_2</slaveDescriptor>
                 <addressRange>0x00110000 - 0x0011000F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>start_button_0</slaveDescriptor>
+                <addressRange>0x00120000 - 0x0012000F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>

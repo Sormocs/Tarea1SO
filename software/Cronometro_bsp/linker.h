@@ -2,9 +2,9 @@
  * linker.h - Linker script mapping information
  *
  * Machine generated for CPU 'cpu_0' in SOPC Builder design 'procesador'
- * SOPC Builder design path: d:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
+ * SOPC Builder design path: D:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
  *
- * Generated: Sat Aug 19 18:30:52 CST 2023
+ * Generated: Sat Aug 19 22:11:35 CST 2023
  */
 
 /*

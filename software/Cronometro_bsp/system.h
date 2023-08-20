@@ -2,9 +2,9 @@
  * system.h - SOPC Builder system and BSP software package information
  *
  * Machine generated for CPU 'cpu_0' in SOPC Builder design 'procesador'
- * SOPC Builder design path: d:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
+ * SOPC Builder design path: D:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
  *
- * Generated: Sat Aug 19 18:30:52 CST 2023
+ * Generated: Sat Aug 19 22:11:35 CST 2023
  */
 
 /*
@@ -400,6 +400,33 @@
 #define ROM_0_SPAN 8192
 #define ROM_0_TYPE "altera_avalon_onchip_memory2"
 #define ROM_0_WRITABLE 0
+
+
+/*
+ * start_button_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_start_button_0 altera_avalon_pio
+#define START_BUTTON_0_BASE 0x120000
+#define START_BUTTON_0_BIT_CLEARING_EDGE_REGISTER 0
+#define START_BUTTON_0_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define START_BUTTON_0_CAPTURE 1
+#define START_BUTTON_0_DATA_WIDTH 1
+#define START_BUTTON_0_DO_TEST_BENCH_WIRING 0
+#define START_BUTTON_0_DRIVEN_SIM_VALUE 0
+#define START_BUTTON_0_EDGE_TYPE "FALLING"
+#define START_BUTTON_0_FREQ 50000000
+#define START_BUTTON_0_HAS_IN 1
+#define START_BUTTON_0_HAS_OUT 0
+#define START_BUTTON_0_HAS_TRI 0
+#define START_BUTTON_0_IRQ 1
+#define START_BUTTON_0_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define START_BUTTON_0_IRQ_TYPE "EDGE"
+#define START_BUTTON_0_NAME "/dev/start_button_0"
+#define START_BUTTON_0_RESET_VALUE 0
+#define START_BUTTON_0_SPAN 16
+#define START_BUTTON_0_TYPE "altera_avalon_pio"
 
 
 /*
