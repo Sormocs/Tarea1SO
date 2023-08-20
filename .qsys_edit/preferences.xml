@@ -8,6 +8,11 @@
   </columns>
  </systemtable>
  <library
+<<<<<<< Updated upstream
    expandedCategories="Project,Library/Processors and Peripherals/Peripherals,Library,Library/Processors and Peripherals" />
  <window width="1920" height="1020" x="0" y="0" />
+=======
+   expandedCategories="Library/Processors and Peripherals/Peripherals,Project,Library/Processors and Peripherals,Library" />
+ <window width="1916" height="1032" x="0" y="6" />
+>>>>>>> Stashed changes
 </preferences>
