@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu_0' in SOPC Builder design 'procesador'
  * SOPC Builder design path: D:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
  *
- * Generated: Sun Aug 20 00:21:46 CST 2023
+ * Generated: Sun Aug 20 00:58:53 CST 2023
  */
 
 /*

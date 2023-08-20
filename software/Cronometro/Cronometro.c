@@ -88,17 +88,16 @@
 
 #include <system.h>
 
-#define DISP_0 0x7E     // Represents 01111110 in binary
-#define DISP_1 0x30     // Represents 00110000 in binary
-#define DISP_2 0x6D     // Represents 01101101 in binary
-#define DISP_3 0x79     // Represents 01111001 in binary
-#define DISP_4 0x33     // Represents 00110011 in binary
-#define DISP_5 0x5B     // Represents 01011011 in binary
-#define DISP_6 0x5F     // Represents 01011111 in binary
-#define DISP_7 0x70     // Represents 01110000 in binary
-#define DISP_8 0x7F     // Represents 01111111 in binary
-#define DISP_9 0x73     // Represents 01110011 in binary
- // si los displays no sirven es porque hay 8 bits
+#define DISP_0 0b0000001     // Represents 01111110 in binary
+#define DISP_1 0b1001111     // Represents 00110000 in binary
+#define DISP_2 0b0010010     // Represents 01101101 in binary
+#define DISP_3 0b0000110     // Represents 01111001 in binary
+#define DISP_4 0b1001100     // Represents 00110011 in binary
+#define DISP_5 0b0100100     // Represents 01011011 in binary
+#define DISP_6 0b0100000     // Represents 01011111 in binary
+#define DISP_7 0b0001111     // Represents 01110000 in binary
+#define DISP_8 0b0000000     // Represents 01111111 in binary
+#define DISP_9 0b0001100     // Represents 01110011 in binary
 
 static int ms = 0;
 static int sec = 0;
