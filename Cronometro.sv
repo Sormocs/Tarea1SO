@@ -5,6 +5,7 @@ module Cronometro(
 	input logic switch_mode0,
 					switch_mode1,
 					switch_pause,
+					pio_switch,
 					play_btn,
 	output logic[6:0] disp0,
 							disp1,
@@ -28,6 +29,7 @@ module Cronometro(
 		.switch_mode_1_external_connection_export(switch_mode1),
 		.switch_pause_0_external_connection_export(switch_pause),
 		.start_button_0_external_connection_export(play_btn),
+		.pio_switch_0_external_connection_export(pio_switch),
 		.pio_leds_0_external_connection_export(leds),
 		.pio_0_external_connection_export(disp2)
 	);

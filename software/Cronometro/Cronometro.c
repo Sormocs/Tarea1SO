@@ -206,7 +206,7 @@ static void timer_isr(void *context)
 	if (ms == 999) {
 		ms = 0;
 		sec++;
-		leds = leds << 1;
+		leds = leds << 1 | (IORD_ALTERA_AVALON_PIO_DATA(PIO_SWITCH_0_BASE) & 1);
 		IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDS_0_BASE, leds);
 	}
 
