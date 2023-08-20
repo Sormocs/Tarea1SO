@@ -50,6 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+procesador/
 
 # ignore Quartus II generated files
 *_generation_script*
@@ -80,7 +81,8 @@ dkms.conf
 *example*
 *sopc_*
 
-
+PLLJ_PLLSPE_INFO.txt
+.qsys_edit/preferences.xml
 # ignore Quartus II generated folders
 */db/
 */incremental_db/
