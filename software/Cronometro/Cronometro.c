@@ -215,13 +215,13 @@ static void timer_isr(void *context)
 		if (mode == 3) {
 			if (ms % 60000 == 0) {
 				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_4_BASE);
-				unsigned next = display_seconds(current);
+				unsigned next = display_nums(current);
 				IOWR_ALTERA_AVALON_PIO_DATA(DISP_4_BASE, next);
 			}
 
 			if (ms % 600000 == 0) {
 				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_5_BASE);
-				unsigned next = display_seconds(current);
+				unsigned next = display_nums(current);
 				IOWR_ALTERA_AVALON_PIO_DATA(DISP_5_BASE, next);
 			}
 		}
