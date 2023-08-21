@@ -100,8 +100,6 @@
 #define DISP_9 0b0010000 // 0b0001100
 
 static int ms = 0;
-static int sec = 0;
-static int min = 0;
 static int mode = 0;
 
 static unsigned display_nums(unsigned curr_num){
@@ -215,19 +213,19 @@ static void timer_isr(void *context)
 		}
 
 		if (mode == 3) {
-			if (ms % 600000 == 0) {
+			if (ms % 60000 == 0) {
 				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_4_BASE);
 				unsigned next = display_seconds(current);
 				IOWR_ALTERA_AVALON_PIO_DATA(DISP_4_BASE, next);
 			}
 
-			if (ms % 6000000 == 0) {
+			if (ms % 600000 == 0) {
 				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_5_BASE);
 				unsigned next = display_seconds(current);
 				IOWR_ALTERA_AVALON_PIO_DATA(DISP_5_BASE, next);
 			}
 		}
-		if (ms == 6000000){
+		if (ms == 600000){
 			ms = 0;
 		}
 	}
@@ -248,7 +246,7 @@ static void begin(){
 	if (swi1 == 0 && swi2 == 0){
 		mode = 1;
 		IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDS_0_BASE, 0b001);
-	} else if (swi1 == 0 && swi2 == 1){
+	} else if ((swi1 == 0 && swi2 == 1) || (swi1 == 1 && swi2 == 0) ){
 		mode = 2;
 		IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDS_0_BASE, 0b011);
 	} else {
