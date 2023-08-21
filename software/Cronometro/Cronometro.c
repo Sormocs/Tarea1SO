@@ -173,10 +173,6 @@ static unsigned display_seconds(unsigned curr_num){
 	         return DISP_5;
 	         break;
 
-	         case DISP_5:
-	         return DISP_6;
-	         break;
-
 	         default:
 	         return DISP_0;
 	      }
@@ -204,42 +200,35 @@ static void timer_isr(void *context)
 			}
 		}
 
-		if (ms == 999) {
-			ms = 0;
-			sec++;
-		}
-
 		if (mode == 2 || mode == 3) {
-			if (sec != 0) {
+			if (ms % 1000 == 0) {
 				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_2_BASE);
 				unsigned next = display_nums(current);
 				IOWR_ALTERA_AVALON_PIO_DATA(DISP_2_BASE, next);
 			}
 
-			if (sec != 0 && sec % 10 == 0) {
+			if (ms % 10000 == 0) {
 				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_3_BASE);
 				unsigned next = display_seconds(current);
 				IOWR_ALTERA_AVALON_PIO_DATA(DISP_3_BASE, next);
 			}
 		}
 
-		if (sec == 59) {
-			sec = 0;
-			min++;
-		}
-
 		if (mode == 3) {
-			if (min != 0) {
+			if (ms % 600000 == 0) {
 				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_4_BASE);
 				unsigned next = display_seconds(current);
 				IOWR_ALTERA_AVALON_PIO_DATA(DISP_4_BASE, next);
 			}
 
-			if (min != 0 && min % 10 == 0) {
+			if (ms % 6000000 == 0) {
 				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_5_BASE);
 				unsigned next = display_seconds(current);
 				IOWR_ALTERA_AVALON_PIO_DATA(DISP_5_BASE, next);
 			}
+		}
+		if (ms == 6000000){
+			ms = 0;
 		}
 	}
 	IOWR_ALTERA_AVALON_TIMER_STATUS(TIMER_0_BASE,0);
