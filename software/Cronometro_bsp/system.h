@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu_0' in SOPC Builder design 'procesador'
  * SOPC Builder design path: D:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
  *
- * Generated: Sun Aug 20 20:46:00 CST 2023
+ * Generated: Sun Aug 20 21:48:34 CST 2023
  */
 
 /*
@@ -369,33 +369,6 @@
 #define PIO_LEDS_0_RESET_VALUE 0
 #define PIO_LEDS_0_SPAN 16
 #define PIO_LEDS_0_TYPE "altera_avalon_pio"
-
-
-/*
- * pio_switch_0 configuration
- *
- */
-
-#define ALT_MODULE_CLASS_pio_switch_0 altera_avalon_pio
-#define PIO_SWITCH_0_BASE 0x10000
-#define PIO_SWITCH_0_BIT_CLEARING_EDGE_REGISTER 0
-#define PIO_SWITCH_0_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define PIO_SWITCH_0_CAPTURE 0
-#define PIO_SWITCH_0_DATA_WIDTH 1
-#define PIO_SWITCH_0_DO_TEST_BENCH_WIRING 0
-#define PIO_SWITCH_0_DRIVEN_SIM_VALUE 0
-#define PIO_SWITCH_0_EDGE_TYPE "NONE"
-#define PIO_SWITCH_0_FREQ 50000000
-#define PIO_SWITCH_0_HAS_IN 1
-#define PIO_SWITCH_0_HAS_OUT 0
-#define PIO_SWITCH_0_HAS_TRI 0
-#define PIO_SWITCH_0_IRQ -1
-#define PIO_SWITCH_0_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define PIO_SWITCH_0_IRQ_TYPE "NONE"
-#define PIO_SWITCH_0_NAME "/dev/pio_switch_0"
-#define PIO_SWITCH_0_RESET_VALUE 0
-#define PIO_SWITCH_0_SPAN 16
-#define PIO_SWITCH_0_TYPE "altera_avalon_pio"
 
 
 /*

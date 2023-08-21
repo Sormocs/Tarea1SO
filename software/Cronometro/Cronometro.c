@@ -88,16 +88,16 @@
 
 #include <system.h>
 
-#define DISP_0 0b0000000 // 0b0000001
-#define DISP_1 0b0000001 // 0b1001111
-#define DISP_2 0b0000011 // 0b0010010
-#define DISP_3 0b0000111 // 0b0000110
-#define DISP_4 0b0001111 // 0b1001100
-#define DISP_5 0b0011111 // 0b0100100
-#define DISP_6 0b0111111 // 0b0100000
-#define DISP_7 0b1111111 // 0b0001111
-#define DISP_8 0b1000001 // 0b0000000
-#define DISP_9 0b1000011 // 0b0001100
+#define DISP_0 0b1000000 // 0b0000001
+#define DISP_1 0b1111001 // 0b1001111
+#define DISP_2 0b0100100 // 0b0010010
+#define DISP_3 0b0110000 // 0b0000110
+#define DISP_4 0b0011001 // 0b1001100
+#define DISP_5 0b0010010 // 0b0100100
+#define DISP_6 0b0000010 // 0b0100000
+#define DISP_7 0b1111000 // 0b0001111
+#define DISP_8 0b0000000 // 0b0000000
+#define DISP_9 0b0010000 // 0b0001100
 
 static int ms = 0;
 static int sec = 0;
@@ -182,11 +182,13 @@ static unsigned display_seconds(unsigned curr_num){
 	      }
 }
 
-static unsigned leds = 0;
 static void timer_isr(void *context)
 {
 	(void) context;
-	if (mode != 0) {
+
+	unsigned pause = IORD(SWITCH_PAUSE_0_BASE,0);
+
+	if (mode != 0 && pause == 0) {
 		ms++;
 		if (mode == 1 || mode == 3) {
 			if (ms % 10 == 0) { // disp 0 de los milisegundos
@@ -205,9 +207,6 @@ static void timer_isr(void *context)
 		if (ms == 999) {
 			ms = 0;
 			sec++;
-			leds = leds << 1
-					| (IORD_ALTERA_AVALON_PIO_DATA(PIO_SWITCH_0_BASE) & 1);
-			IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDS_0_BASE, leds);
 		}
 
 		if (mode == 2 || mode == 3) {

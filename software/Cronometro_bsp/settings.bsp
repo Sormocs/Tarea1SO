@@ -2,12 +2,12 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Aug 20, 2023 8:46:00 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1692585960537</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Aug 20, 2023 9:48:34 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1692589714351</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\TEC\Semestre_II_2023\Operativos\Tarea_1\Tarea\Tarea1SO\software\Cronometro_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>D:\TEC\Semestre_II_2023\Operativos\Tarea_1\Tarea\Tarea1SO\procesador.sopcinfo</SopcDesignFile>
-        <SystemFileHash>8c2b8845e05f1c329977f76825911ec92cc5fa45c85783499122fed97</SystemFileHash>
+        <SystemFileHash>47fe3cf0a318c22fa5fb63fb5c17af674c936015fe7779109156759e5da0b71a</SystemFileHash>
         <JdiFile>default</JdiFile>
         <Cpu>cpu_0</Cpu>
         <SchemaVersion>1.9</SchemaVersion>
@@ -880,12 +880,6 @@
                 <addressRange>0x00000000 - 0x00001FFF</addressRange>
                 <addressSpan>8192</addressSpan>
                 <attributes>memory, non-volatile</attributes>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>pio_switch_0</slaveDescriptor>
-                <addressRange>0x00010000 - 0x0001000F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>ram_0</slaveDescriptor>
