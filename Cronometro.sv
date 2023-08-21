@@ -13,7 +13,7 @@ module Cronometro(
 							disp3,
 							disp4,
 							disp5,
-	output logic[9:0] leds
+	output logic[2:0] leds
 	);
 	
 	procesador proc

@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu_0' in SOPC Builder design 'procesador'
  * SOPC Builder design path: D:/TEC/Semestre_II_2023/Operativos/Tarea_1/Tarea/Tarea1SO/procesador.sopcinfo
  *
- * Generated: Sun Aug 20 00:58:53 CST 2023
+ * Generated: Sun Aug 20 20:46:00 CST 2023
  */
 
 /*
@@ -354,7 +354,7 @@
 #define PIO_LEDS_0_BIT_CLEARING_EDGE_REGISTER 0
 #define PIO_LEDS_0_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define PIO_LEDS_0_CAPTURE 0
-#define PIO_LEDS_0_DATA_WIDTH 10
+#define PIO_LEDS_0_DATA_WIDTH 3
 #define PIO_LEDS_0_DO_TEST_BENCH_WIRING 0
 #define PIO_LEDS_0_DRIVEN_SIM_VALUE 0
 #define PIO_LEDS_0_EDGE_TYPE "NONE"
