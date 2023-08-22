@@ -88,21 +88,18 @@
 
 #include <system.h>
 
-#define DISP_0 0x7E     // Represents 01111110 in binary
-#define DISP_1 0x30     // Represents 00110000 in binary
-#define DISP_2 0x6D     // Represents 01101101 in binary
-#define DISP_3 0x79     // Represents 01111001 in binary
-#define DISP_4 0x33     // Represents 00110011 in binary
-#define DISP_5 0x5B     // Represents 01011011 in binary
-#define DISP_6 0x5F     // Represents 01011111 in binary
-#define DISP_7 0x70     // Represents 01110000 in binary
-#define DISP_8 0x7F     // Represents 01111111 in binary
-#define DISP_9 0x73     // Represents 01110011 in binary
- // si los displays no sirven es porque hay 8 bits
+#define DISP_0 0b1000000 // 0b0000001
+#define DISP_1 0b1111001 // 0b1001111
+#define DISP_2 0b0100100 // 0b0010010
+#define DISP_3 0b0110000 // 0b0000110
+#define DISP_4 0b0011001 // 0b1001100
+#define DISP_5 0b0010010 // 0b0100100
+#define DISP_6 0b0000010 // 0b0100000
+#define DISP_7 0b1111000 // 0b0001111
+#define DISP_8 0b0000000 // 0b0000000
+#define DISP_9 0b0010000 // 0b0001100
 
 static int ms = 0;
-static int sec = 0;
-static int min = 0;
 static int mode = 0;
 
 static unsigned display_nums(unsigned curr_num){
@@ -174,72 +171,62 @@ static unsigned display_seconds(unsigned curr_num){
 	         return DISP_5;
 	         break;
 
-	         case DISP_5:
-	         return DISP_6;
-	         break;
-
 	         default:
 	         return DISP_0;
 	      }
 }
 
-static unsigned leds = 0;
 static void timer_isr(void *context)
 {
-	(void)context;
+	(void) context;
 
-	ms++;
-	if (mode != 2) {
-		if (ms % 100 == 0) { // disp 0 de los milisegundos
-			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_0_BASE);
-			unsigned next = display_nums(current);
-			IOWR_ALTERA_AVALON_PIO_DATA(DISP_0_BASE, next);
+	unsigned pause = IORD(SWITCH_PAUSE_0_BASE,0);
+
+	if (mode != 0 && pause == 0) {
+		ms++;
+		if (mode == 1 || mode == 3) {
+			if (ms % 10 == 0) { // disp 0 de los milisegundos
+				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_0_BASE);
+				unsigned next = display_nums(current);
+				IOWR_ALTERA_AVALON_PIO_DATA(DISP_0_BASE, next);
+			}
+
+			if (ms % 100 == 0) { // disp 1 de los milisegundos
+				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_1_BASE);
+				unsigned next = display_nums(current);
+				IOWR_ALTERA_AVALON_PIO_DATA(DISP_1_BASE, next);
+			}
 		}
 
-		if (ms % 1000 == 0) { // disp 1 de los milisegundos
-			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_1_BASE);
-			unsigned next = display_nums(current);
-			IOWR_ALTERA_AVALON_PIO_DATA(DISP_1_BASE, next);
-		}
-	}
+		if (mode == 2 || mode == 3) {
+			if (ms % 1000 == 0) {
+				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_2_BASE);
+				unsigned next = display_nums(current);
+				IOWR_ALTERA_AVALON_PIO_DATA(DISP_2_BASE, next);
+			}
 
-	if (ms == 9999) {
-		ms = 0;
-		sec++;
-		leds = leds << 1;
-		IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDS_0_BASE, leds);
-	}
-
-	if (mode != 1) {
-		if (sec != 0) {
-			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_2_BASE);
-			unsigned next = display_nums(current);
-			IOWR_ALTERA_AVALON_PIO_DATA(DISP_2_BASE, next);
+			if (ms % 10000 == 0) {
+				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_3_BASE);
+				unsigned next = display_seconds(current);
+				IOWR_ALTERA_AVALON_PIO_DATA(DISP_3_BASE, next);
+			}
 		}
 
-		if (sec != 0 && sec % 10 == 0) {
-			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_3_BASE);
-			unsigned next = display_seconds(current);
-			IOWR_ALTERA_AVALON_PIO_DATA(DISP_3_BASE, next);
+		if (mode == 3) {
+			if (ms % 60000 == 0) {
+				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_4_BASE);
+				unsigned next = display_nums(current);
+				IOWR_ALTERA_AVALON_PIO_DATA(DISP_4_BASE, next);
+			}
+
+			if (ms % 600000 == 0) {
+				unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_5_BASE);
+				unsigned next = display_nums(current);
+				IOWR_ALTERA_AVALON_PIO_DATA(DISP_5_BASE, next);
+			}
 		}
-	}
-
-	if (sec == 59) {
-		sec = 0;
-		min++;
-	}
-
-	if (mode == 3) {
-		if (min != 0) {
-			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_4_BASE);
-			unsigned next = display_seconds(current);
-			IOWR_ALTERA_AVALON_PIO_DATA(DISP_4_BASE, next);
-		}
-
-		if (min != 0 && min % 10 == 0) {
-			unsigned current = IORD_ALTERA_AVALON_PIO_DATA(DISP_5_BASE);
-			unsigned next = display_seconds(current);
-			IOWR_ALTERA_AVALON_PIO_DATA(DISP_5_BASE, next);
+		if (ms == 600000){
+			ms = 0;
 		}
 	}
 	IOWR_ALTERA_AVALON_TIMER_STATUS(TIMER_0_BASE,0);
@@ -258,12 +245,16 @@ static void begin(){
 	unsigned swi2 = IORD(SWITCH_MODE_1_BASE,0);
 	if (swi1 == 0 && swi2 == 0){
 		mode = 1;
-	} else if (swi1 == 0 && swi2 == 1){
+		IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDS_0_BASE, 0b001);
+	} else if ((swi1 == 0 && swi2 == 1) || (swi1 == 1 && swi2 == 0) ){
 		mode = 2;
+		IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDS_0_BASE, 0b011);
 	} else {
+		IOWR_ALTERA_AVALON_PIO_DATA(PIO_LEDS_0_BASE, 0b111);
 		mode = 3;
 	}
-
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(START_BUTTON_0_BASE, 0);
+	IORD_ALTERA_AVALON_PIO_EDGE_CAP(START_BUTTON_0_BASE);
 }
 
 int main()
