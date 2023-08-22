@@ -88,6 +88,10 @@
 
 #include <system.h>
 
+/*
+ * Constantes para encender los segmentos de los displays de los números.
+ */
+
 #define DISP_0 0b1000000 // 0b0000001
 #define DISP_1 0b1111001 // 0b1001111
 #define DISP_2 0b0100100 // 0b0010010
@@ -99,8 +103,23 @@
 #define DISP_8 0b0000000 // 0b0000000
 #define DISP_9 0b0010000 // 0b0001100
 
-static int ms = 0;
+
+/*
+ * Variables para el código
+ *
+ *  - ms: cuenta los ms recorridos para el control del tiempo.
+ *
+ *  - mode: Modo de operación del sistema. Son solo ms, solo s o ms, s y minutos respectivamente.
+ *
+ */
+
+static int ms = 0; //
 static int mode = 0;
+
+/*
+ * Case para hacer recorrido de los números de 0 a 9, empleado por casi todos
+ * los displays.
+ */
 
 static unsigned display_nums(unsigned curr_num){
 
@@ -147,6 +166,12 @@ static unsigned display_nums(unsigned curr_num){
 	      }
 }
 
+/*
+ * Case para hacer recorrido de los números de 0 a 6, empleado por
+ * el display que indica las decenas de los segundos ya que no debe llegar
+ * hasta 9.
+ */
+
 static unsigned display_seconds(unsigned curr_num){
 
 	switch (curr_num)
@@ -175,6 +200,12 @@ static unsigned display_seconds(unsigned curr_num){
 	         return DISP_0;
 	      }
 }
+
+/*
+ * Función que se llama cada vez que pasa un ms para actualizar los displays.
+ * Se actualizan realizando divisiones a la cantidad de ms que lleva la variable ms.
+ * Añade un 1 a ms cada vez que se ejecuta.
+ */
 
 static void timer_isr(void *context)
 {
@@ -232,6 +263,10 @@ static void timer_isr(void *context)
 	IOWR_ALTERA_AVALON_TIMER_STATUS(TIMER_0_BASE,0);
 }
 
+/*
+ * Se llama al presionar el botón de inicio solamente, pone los displays en 0.
+ */
+
 static void begin(){
 
 	IOWR(DISP_0_BASE,0,DISP_0);
@@ -240,6 +275,8 @@ static void begin(){
 	IOWR(DISP_3_BASE,0,DISP_0);
 	IOWR(DISP_4_BASE,0,DISP_0);
 	IOWR(DISP_5_BASE,0,DISP_0);
+
+	ms = 0;
 
 	unsigned swi1 = IORD(SWITCH_MODE_0_BASE,0);
 	unsigned swi2 = IORD(SWITCH_MODE_1_BASE,0);
@@ -256,6 +293,10 @@ static void begin(){
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(START_BUTTON_0_BASE, 0);
 	IORD_ALTERA_AVALON_PIO_EDGE_CAP(START_BUTTON_0_BASE);
 }
+
+/*
+ * Función principal del código
+ */
 
 int main()
 {
